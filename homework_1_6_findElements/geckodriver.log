@@ -1501,3 +1501,4 @@ console.error: BroadcastService:
 1563823475301	Marionette	INFO	Listening on port 62649
 1563823475309	Marionette	WARN	TLS certificate errors will be ignored for this session
 1563823487324	Marionette	INFO	Stopped listening on port 62649
+1563824480002	Marionette	INFO	Stopped listening on port 62580
