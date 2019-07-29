@@ -41,4 +41,6 @@ class ProductPageLocators(object):
     EDIT_IMG = (By.ID, "button-image")
     CHOOSE_IMG =(By.XPATH, "//div[@id='modal-image']//img[@title='%s']" % "cart.png")
     COUNT_IMGS = (By.XPATH, "//table[@id='images']/tbody/tr")
+    PRODUCT_COMPUTER = (By.XPATH, "//span[contains(text(), 'Компьютеры')]")
+    PRODUCT_NOTEBOOK = (By.XPATH, "//span[contains(text(), 'Ноутбуки')]")
 

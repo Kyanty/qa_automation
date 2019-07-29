@@ -1,5 +1,6 @@
 import pytest
 import sys
+import requests
 from selenium import webdriver
 from homework_1_11.models.page_objects.page_objects import LoginPage
 from homework_1_11.models.page_objects.page_objects import ProductPage
@@ -9,6 +10,8 @@ from homework_1_11.models.page_objects.page_objects import ProductPage
 def pytest_addoption(parser):
     parser.addoption("--address", action="store", default="http://192.168.56.101/",
                      help="Opencart web address")
+    parser.addoption("--demo-url", action="store", default="http://demo23.opencart.pro/",
+                     help="Opencart web address")
     parser.addoption("--browser", action="store", default="firefox", help="Browser name")
     parser.addoption("--wait", action="store", default=10000, help="Wait time")
 
@@ -16,6 +19,12 @@ def pytest_addoption(parser):
 @pytest.fixture(scope="session", autouse=True)
 def address(request):
     url = request.config.getoption("--address")
+    yield url
+
+
+@pytest.fixture(scope="session", autouse=True)
+def demo_url(request):
+    url = request.config.getoption("--demo-url")
     yield url
 
 
@@ -52,6 +61,12 @@ def driver(request):
         sys.exit(1)
     yield wd
     wd.quit()
+
+
+@pytest.fixture(scope="session")
+def open_demo(driver, request):
+    url = 'admin/'
+    return driver.get("".join([request.config.getoption("--demo-url"), url]))
 
 
 @pytest.fixture(scope="session")

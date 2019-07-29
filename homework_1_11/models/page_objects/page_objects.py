@@ -1,3 +1,6 @@
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver import ActionChains
+
 from homework_1_11.models.page import BasePage
 from homework_1_11.models.locator import BaseLocators, LoginPageLocators, ProductPageLocators
 
@@ -85,6 +88,18 @@ class ProductPage(BasePage):
 
     def choose_img(self):
         return self.driver.find_element(*ProductPageLocators.CHOOSE_IMG).click()
+
+    def get_element1_for_dnd(self):
+        return self.driver.find_element(*ProductPageLocators.PRODUCT_COMPUTER)
+
+    def get_element2_for_dnd(self):
+        return self.driver.find_element(*ProductPageLocators.PRODUCT_NOTEBOOK)
+
+    def drug_and_drop(self):
+        element1 = self.get_element1_for_dnd()
+        element2 = self.get_element2_for_dnd()
+        ActionChains(self.driver).drag_and_drop(element1, element2).perform()
+        return True
 
 
 

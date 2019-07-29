@@ -122,3 +122,8 @@ class BasePage:
     def _get_elements(self, *locator):
         return self.driver.find_elements(*locator)
 
+
+
+
+
+
